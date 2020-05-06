@@ -10,6 +10,10 @@ Simple Shared Material Helper
 Add the component via Add Component->Pixel Wizards->Shared Material Helper
 ![Shared Material Helper Component](Documentation~/images/SharedMaterialHelper.png)
 
+Here it is with a single object animated on timeline - all of the instances sync to the animation!
+
+![Shared Material Helper Timeline](Documentation~/images/SharedMaterialTimeline.gif)
+
 ## Installation
 
 ### Install via OpenUPM
