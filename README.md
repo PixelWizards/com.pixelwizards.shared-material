@@ -7,8 +7,24 @@
 
 Simple Shared Material Helper
 
-Add the component via Add Component->Pixel Wizards->Shared Material Helper
+Add the component via:
+
+- Add ***Component->Shared Material->Shared Material Helper***, or 
+- Add ***Component->Shared Material->Shared Material Group Helper***
+
 ![Shared Material Helper Component](Documentation~/images/SharedMaterialHelper.png)
+
+Both components are the same, with one exception:
+
+**Shared Material Helper**
+
+- operates on a single object (renderer) - you can drive the material animation for a single instance with this component (as part of a prefab for example)
+
+**Shared Material Group Helper**
+
+- operates on a list of nested / child objects (renderers) - so you can drive the material animation for an entire group of instances by simply adding this component to a parent GameObject
+
+## Example
 
 Here it is with a single object animated on timeline - all of the instances sync to the animation!
 
@@ -45,7 +61,8 @@ To install this package, you need to edit your Unity project's `Packages/manifes
 
 ### Tools
 
-* Components/Pixel Wizards/Shared Material Helper
+* Component/Shared Material/Shared Material Helper
+* Component/Shared Material/Shared Material Group Helper
 
 ### Required dependencies
 ---------------

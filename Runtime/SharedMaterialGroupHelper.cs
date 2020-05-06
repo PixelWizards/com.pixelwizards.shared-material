@@ -6,33 +6,36 @@ using UnityEngine;
 namespace PixelWizards.Timeline
 {
     [ExecuteAlways]
-    [AddComponentMenu("Shared Material/Shared Material Helper")]
-    public class SharedMaterialHelper : MonoBehaviour
+    [AddComponentMenu("Shared Material/Shared Material Group Helper")]
+    public class SharedMaterialGroupHelper : MonoBehaviour
     {
         [Header("Scene Reference")]
         public Renderer referenceObject;
 
-        private Renderer myRenderer;
+        private List<Renderer> renderList = new List<Renderer>();
         private MaterialPropertyBlock refPropBlock;
         private MaterialPropertyBlock myPropBlock;
 
         private void OnEnable()
         {
-            myRenderer = GetComponent<Renderer>();
+            renderList = GetComponentsInChildren<Renderer>().ToList();
             refPropBlock = new MaterialPropertyBlock();
             myPropBlock = new MaterialPropertyBlock();
         }
 
         private void Update()
         {
-            if (myRenderer == null)
+            if (renderList.Count < 1)
                 return;
 
             if( referenceObject != null)
             {
                 referenceObject.GetPropertyBlock(refPropBlock);
-                myRenderer.GetPropertyBlock(myPropBlock);
-                myRenderer.SetPropertyBlock(refPropBlock);
+                foreach (var entry in renderList)
+                {
+                    entry.GetPropertyBlock(myPropBlock);
+                    entry.SetPropertyBlock(refPropBlock);
+                }
             }
         }
     }
