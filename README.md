@@ -1,7 +1,7 @@
 # com.pixelwizards.shared-material
 =========================
 
-[![openupm](https://img.shields.io/npm/v/com.pixelwizards.physicalmaterialmanager?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.pixelwizards.physicalmaterialmanager/)
+[![openupm](https://img.shields.io/npm/v/com.pixelwizards.shared-material?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.pixelwizards.shared-material/)
 
 ## About this Project
 
