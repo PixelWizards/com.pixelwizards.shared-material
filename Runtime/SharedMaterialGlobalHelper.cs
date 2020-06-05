@@ -18,54 +18,40 @@ namespace PixelWizards.Timeline
         private MaterialPropertyBlock refPropBlock;
         private MaterialPropertyBlock myPropBlock;
 
-        private void Start()
+        private void OnEnable()
         {
             //renderList = GetComponentsInChildren<Renderer>().ToList();
-            renderList = new List<Renderer>();
-            _gameObjects = new List<Renderer>();
-            FindObjectsWithRenderer(_gameObjects);
+            StartCoroutine(StartRenderUpdate());
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
 
-            if (referenceRenderers != null)
-            {
-                foreach (Renderer _gameObject in _gameObjects)
-                {
-                    foreach (Renderer refRenderer in referenceRenderers)
-                    {
-                        if (_gameObject.name == refRenderer.name)
-                        {
-                            renderList.Add(_gameObject);
-                        }
-                    }
-                    
-                }
-                
-                foreach (Renderer refRenderer in referenceRenderers)
-                {
-                    if (refRenderer == referenceObject)
-                    {
-                        renderList.Remove(refRenderer);
-                        break;
-                    }
-                }
-            }
+        IEnumerator StartRenderUpdate()
+        {
+            yield return new WaitForSecondsRealtime(4f);
+            Debug.Log("coroutine started");
+            UpdateRenderers();
+        
+        }
 
-            _gameObjects = null;
-            
-            refPropBlock = new MaterialPropertyBlock();
-            myPropBlock = new MaterialPropertyBlock();
+        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            Debug.Log("OnSceneLoaded: " + scene.name);
+            Debug.Log(mode);
+            UpdateRenderers();
         }
         
         public void ResetRenderers()
         {
             renderList = null;
             _gameObjects = null;
-            refPropBlock = null;
-            myPropBlock = null;
+           // refPropBlock = null;
+          //  myPropBlock = null;
 
         }
 
         public void UpdateRenderers()
         {
+            Debug.Log("Updating Shared Material for: " + gameObject.name);
             renderList = null;
             _gameObjects = null;
             
